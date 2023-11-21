@@ -9,3 +9,7 @@ Shop Smart is a user-friendly web app designed to enhance your shopping experien
 - Seamless synchronization across devices for on-the-go access.
 - Save time with reusable templates for different occasions.
 - User-friendly interface for a smooth shopping experience.
+
+**Technical**
+
+- Planning implement local database to store data
