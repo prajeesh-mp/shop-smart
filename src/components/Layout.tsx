@@ -6,10 +6,9 @@ function Layout() {
   return (
     <Container className="py-3">
       <h1 className="text-center">Shop Smart 🛒</h1>
-      {/* <Outlet /> */}
       <Row className="">
         <Col xs={12} md={8}>
-          Purchase List
+          <Outlet />
         </Col>
         <Col xs={12} md={4}>
           <Template />
