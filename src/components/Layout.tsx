@@ -1,6 +1,7 @@
 import { Col, Container, Row } from "react-bootstrap";
 import { Outlet } from "react-router-dom";
 import Template from "./Template";
+import Purchase from "./Purchase";
 
 function Layout() {
   return (
@@ -15,6 +16,8 @@ function Layout() {
           <Template />
           <Template />
           <h2>Purchase Lists</h2>
+          <Purchase />
+          <Purchase />
         </Col>
       </Row>
     </Container>
