@@ -11,8 +11,10 @@ function Layout() {
           <Outlet />
         </Col>
         <Col xs={12} md={4}>
+          <h2>Templates</h2>
           <Template />
           <Template />
+          <h2>Purchase Lists</h2>
         </Col>
       </Row>
     </Container>
