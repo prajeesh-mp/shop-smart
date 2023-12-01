@@ -1,59 +1,81 @@
 import React, { useState } from "react";
-import { Container, Form, ListGroup, Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+interface Task {
+  text: string;
+  completed: boolean;
+}
 
 const PurchaseList: React.FC = () => {
-  const [task, setTask] = useState<string>("");
-  const [tasks, setTasks] = useState<string[]>([]);
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [inputTask, setInputTask] = useState<string>("");
 
-  const handleTaskChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTask(e.target.value);
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputTask(event.target.value);
   };
 
-  const handleAddTask = () => {
-    if (task.trim() !== "") {
-      setTasks([...tasks, task]);
-      setTask("");
+  const handleEnterPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter" && inputTask.trim() !== "") {
+      setTasks([...tasks, { text: inputTask, completed: false }]);
+      setInputTask("");
     }
   };
 
-  const handleDeleteTask = (index: number) => {
+  const handleCheckboxChange = (index: number) => {
     const updatedTasks = [...tasks];
-    updatedTasks.splice(index, 1);
+    updatedTasks[index] = {
+      ...updatedTasks[index],
+      completed: !updatedTasks[index].completed,
+    };
     setTasks(updatedTasks);
   };
 
   return (
-    <Container className="mt-4">
-      <h1>Create new Purchase List</h1>
-      <Form>
-        <Form.Group controlId="taskInput" className="mb-3">
-          <Form.Label>Task</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter a new task"
-            value={task}
-            onChange={handleTaskChange}
-          />
-        </Form.Group>
-        <Button variant="primary" onClick={handleAddTask}>
-          Add Task
-        </Button>
-      </Form>
-
-      <ListGroup className="mt-4">
+    <div className="container mt-4">
+      {/* <h3>Todo List</h3> */}
+      <ul className="list-group">
         {tasks.map((task, index) => (
-          <ListGroup.Item
+          <li
             key={index}
-            className="d-flex justify-content-between align-items-center"
+            className="list-group-item d-flex justify-content-between align-items-center"
           >
-            {task}
-            <Button variant="danger" onClick={() => handleDeleteTask(index)}>
-              Delete
-            </Button>
-          </ListGroup.Item>
+            <div>
+              <input
+                type="checkbox"
+                className="mr-3"
+                checked={task.completed}
+                onChange={() => handleCheckboxChange(index)}
+              />
+              {task.text}
+            </div>
+          </li>
         ))}
-      </ListGroup>
-    </Container>
+      </ul>
+      <input
+        type="text"
+        className="form-control mt-3"
+        placeholder="Add a new task..."
+        value={inputTask}
+        onChange={handleInputChange}
+        onKeyDown={handleEnterPress}
+      />
+      {/* 
+      <div className="d-flex justify-content-between mb-3">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Add a new task..."
+          value={inputTask}
+          onChange={handleInputChange}
+          onKeyDown={handleEnterPress}
+        />
+        <select className="form-control mr-2">
+          <option value="All">All</option>
+          <option value="Completed">Completed</option>
+          <option value="Incomplete">Incomplete</option>
+        </select>
+      </div> */}
+    </div>
   );
 };
 

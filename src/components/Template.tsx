@@ -19,7 +19,9 @@ function Template() {
       </div>
 
       <hr />
-      <button className="btn btn-primary btn-sm">use this template</button>
+      <div className="d-flex justify-content-center">
+        <button className="btn btn-primary btn-sm">use this template</button>
+      </div>
     </div>
   );
 }
