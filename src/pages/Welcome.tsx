@@ -30,6 +30,7 @@ function Welcome(): JSX.Element {
             src="/assets/shop-smart-checklist.jpg"
             className="img-responsive"
             width={350}
+            alt="Shop Smart - Create and Manage your purchase list"
           />
           <Link to="/dashboard" className="btn btn-primary w-75 mt-5">
             Get Started
