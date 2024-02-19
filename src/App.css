@@ -4,4 +4,124 @@
 
 .summary {
   background-color: #0f2e79;
+  color: #fff;
+  background-image: linear-gradient(
+    to top,
+    #1e3c72 0%,
+    #1e3c72 1%,
+    #2a5298 100%
+  );
+}
+
+.amount {
+  font-size: 34px;
+  font-weight: 600;
+}
+
+.text-muted-primary {
+  color: #6d81ab;
+  font-size: 13px;
+}
+
+.avatar {
+  background: #d9e7fa;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.desc {
+  font-weight: 400;
+  font-size: 13px;
+  color: #9d9b9b;
+}
+
+.bill {
+  font-weight: 600;
+}
+
+.search {
+  background: #f5f5f5;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.floating-btn {
+  /* background: #0c296a;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+
+} */
+  background: #0c296a;
+  position: absolute;
+  z-index: 999;
+  width: 43px;
+  height: 43px;
+  border-radius: 100%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 25px;
+  right: 25px;
+
+  &:before {
+    position: absolute;
+    content: "";
+    width: 20px;
+    height: 2px;
+    background: #fff;
+    transform: rotate(90deg);
+    transition: all 0.4s ease;
+  }
+  &:after {
+    position: absolute;
+    content: "";
+    width: 20px;
+    height: 2px;
+    background: #fff;
+    transition: all 0.4s ease;
+  }
+}
+
+/** Purchase List **/
+
+.purchase {
+  background-color: #0f2e79;
+  color: #fff;
+  background-image: linear-gradient(
+    to top,
+    #1e3c72 0%,
+    #1e3c72 1%,
+    #2a5298 100%
+  );
+  height: 100%;
+}
+
+.items {
+  background: #fff;
+  min-height: 100%;
+  border-top-right-radius: 30px;
+  border-top-left-radius: 30px;
+}
+
+.items-top > .title {
+  font-size: 22px;
+  color: #000;
+}
+
+.item {
+  background: #f6fafb;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+input {
+  outline: none;
 }
