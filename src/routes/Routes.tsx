@@ -3,6 +3,7 @@ import PageNotFound from "../pages/404";
 import MobileLayout from "../layout/MobileLayout";
 import Welcome from "../pages/Welcome";
 import Dashboard from "../pages/Dashboard";
+import PurchaseList from "../pages/PurchaseList";
 
 const AppRoutes = () => {
   return (
@@ -12,6 +13,7 @@ const AppRoutes = () => {
       <Route element={<MobileLayout />}>
         <Route path="/" element={<Welcome />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/list/:id" element={<PurchaseList />} />
       </Route>
     </Routes>
   );
