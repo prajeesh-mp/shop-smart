@@ -1,21 +1,24 @@
 import React, { RefObject, useEffect, useRef, useState } from "react";
-import { FiPlus, FiTrash2 } from "react-icons/fi";
-import AppButton from "../components/Form/Button";
+import { Button } from "react-bootstrap";
+import { FiArrowLeftCircle, FiPlus, FiTrash2 } from "react-icons/fi";
 
 interface Item {
   id: number;
   value: string;
+  fieldRef: any;
 }
 
 function PurchaseList(): JSX.Element {
-  const [inputFields, setInputFields] = useState<Item[]>([]);
-  const [idCounter, setIdCounter] = useState(0);
+  const [inputFields, setInputFields] = useState<Item[]>([
+    { id: 1, value: "", fieldRef: null },
+  ]);
+  const [idCounter, setIdCounter] = useState(1);
 
-  const handleAddInput = (callback?: () => void) => {
-    const newInputField = { id: idCounter, value: "" };
-    setInputFields([...inputFields, newInputField]);
-    setIdCounter(idCounter + 1); // Increment the counter
-    callback && callback();
+  const handleAddInput = () => {
+    const newInputField: Item = { id: idCounter, value: "", fieldRef: null };
+    setInputFields((inputFields) => [...inputFields, newInputField]);
+    setIdCounter((idCounter) => idCounter + 1); // Increment the counter
+    window.scrollTo(0, document.body.scrollHeight);
   };
 
   const handleInputChange = (
@@ -33,25 +36,21 @@ function PurchaseList(): JSX.Element {
     setInputFields(remainingInputs);
   };
 
-  const inputRefs = useRef<Array<RefObject<HTMLInputElement>>>([]);
-
-  // Create a new input ref for each input field
   useEffect(() => {
-    if (idCounter === 0) handleAddInput();
-
-    inputRefs.current = Array(inputFields.length)
-      .fill(null)
-      .map((_, index) => inputRefs.current[index] || React.createRef());
-  }, [inputFields]);
+    if (inputFields.length > 0 && inputFields[inputFields.length - 1].fieldRef)
+      inputFields[inputFields.length - 1].fieldRef?.focus();
+  }, [idCounter]);
 
   return (
     <div className="purchase">
       <div className="p-3">
         <span className="avatar"></span>
-        <span>Hi, John</span>
+        <span>
+          <FiArrowLeftCircle size={25} />
+        </span>
 
         <h2 className="mt-4">
-          Create a <br /> shopping list now!
+          Create a <br /> shopping list now !
         </h2>
         <p>
           Helps you buy only what you need, <br />
@@ -59,56 +58,57 @@ function PurchaseList(): JSX.Element {
         </p>
       </div>
 
-      <div className="items mt-3 p-4">
+      <div className="items mt-3">
         <div className="items-top d-flex flex-row justify-content-between align-items-center my-3">
           <h2 className="title">Write down</h2>
           <span className="desc">{inputFields.length} Items</span>
         </div>
 
-        {inputFields.map((input, index) => (
-          <div
-            className="item d-flex flex-row justify-content-between align-items-center mb-3"
-            key={input.id}
-          >
-            <input
-              type="text"
-              className="w-100"
-              placeholder="Write here . ."
-              onChange={(event) => handleInputChange(input.id, event)}
-              onKeyDown={(event) => {
-                if (event.key === "Enter") {
-                  event.preventDefault();
-                  handleAddInput();
-                  setTimeout(() => {
-                    if (inputRefs.current[index + 1]) {
-                      inputRefs.current[index + 1].current?.focus();
-                    }
-                  }, 100);
-                }
-              }}
-              ref={inputRefs.current[index]}
-            />
+        {inputFields &&
+          inputFields.map((input) => (
             <div
-              className="trash d-flex flex-row justify-content-center align-items-center"
-              onClick={() => handleRemoveInput(input.id)}
+              className="item d-flex flex-row justify-content-between align-items-center mb-3"
+              key={input.id}
             >
-              <FiTrash2 color="#CD5226" />
+              <input
+                name={input.id.toString()}
+                id={input.id.toString()}
+                type="text"
+                className="w-100"
+                placeholder="Write here . ."
+                onChange={(event) => handleInputChange(input.id, event)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    event.preventDefault();
+                    handleAddInput();
+                  }
+                }}
+                ref={(e) => (input.fieldRef = e)}
+              />
+              <div
+                className="trash d-flex flex-row justify-content-center align-items-center"
+                onClick={() => handleRemoveInput(input.id)}
+              >
+                <FiTrash2 color="#CD5226" />
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
 
         <div
-          className="item d-flex flex-row justify-content-center mt-4"
+          className="item d-flex flex-row justify-content-center mt-4 mb-5"
           onClick={() => handleAddInput()}
         >
           <FiPlus color="#000" size={20} />
         </div>
-
-        <AppButton
-          label="Save to my list"
-          isProcessing={false}
-          className="mt-3"
-        />
+      </div>
+      <div className="fixed-bottom  btn-container ">
+        <button
+          // label="Save to my list"
+          // isProcessing={false}
+          className="save-btn"
+        >
+          Save
+        </button>
       </div>
     </div>
   );
