@@ -1,3 +1,6 @@
+body {
+  background: #2a5298;
+}
 .mobile {
   height: 100vh;
 }
@@ -66,24 +69,6 @@
   align-items: center;
   bottom: 50px;
   right: 35px;
-
-  &:before {
-    position: absolute;
-    content: "";
-    width: 20px;
-    height: 2px;
-    background: #fff;
-    transform: rotate(90deg);
-    transition: all 0.4s ease;
-  }
-  &:after {
-    position: absolute;
-    content: "";
-    width: 20px;
-    height: 2px;
-    background: #fff;
-    transition: all 0.4s ease;
-  }
 }
 
 /** Purchase List **/
@@ -104,6 +89,8 @@
   /* min-height: 100%; */
   border-top-right-radius: 30px;
   border-top-left-radius: 30px;
+  padding: 1.5rem;
+  padding-bottom: 50px;
 }
 
 .items-top > .title {
@@ -141,4 +128,21 @@ input[type="checkbox"] {
   border-radius: 5px;
   width: 30px;
   height: 30px;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+.save-btn {
+  background: #0c296a;
+  color: #fff;
+  position: absolute;
+  z-index: 999;
+  bottom: 25px;
+  width: 80%;
+  border: none;
+  height: 50px;
+  border-radius: 5px;
 }
