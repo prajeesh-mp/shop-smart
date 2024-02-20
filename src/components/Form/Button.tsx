@@ -20,7 +20,7 @@ function AppButton({
       variant={variant}
       type={type}
       disabled={isProcessing}
-      className={`w-100 ${className}`}
+      className={`${className}`}
     >
       {isProcessing && (
         <>
