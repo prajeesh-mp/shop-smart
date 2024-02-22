@@ -99,7 +99,7 @@ export const addMultipleData = <T>(
       //   const store = txn.objectStore(storeName);
 
       data.forEach((data) => {
-        let request = txn.objectStore(storeName).add(data);
+        txn.objectStore(storeName).add(data);
       });
 
       txn.oncomplete = () => {

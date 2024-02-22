@@ -55,7 +55,7 @@ function PurchaseList(): JSX.Element {
 
       console.log(dd);
 
-      const response = await addMultipleData(Stores.ListItems, dd, () => {
+      await addMultipleData(Stores.ListItems, dd, () => {
         console.log("Data added !!!");
         alert("Saved");
         setIsSaved(true);
