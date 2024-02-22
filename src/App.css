@@ -71,6 +71,11 @@ body {
   right: 35px;
 }
 
+.btn-saved {
+  background: #395593 !important;
+  color: #bcb8b8 !important;
+}
+
 /** Purchase List **/
 
 .purchase {
