@@ -10,7 +10,3 @@ export function format(amount: number, currency: "INR" | "USD" = "INR") {
 
   return formatter.format(amount);
 }
-
-export default {
-  format,
-};

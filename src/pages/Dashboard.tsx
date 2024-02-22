@@ -2,7 +2,7 @@ import { Col, Row } from "react-bootstrap";
 import { format as formatCurrency } from "../utils/currency";
 import { useMemo } from "react";
 import PurchaseListItem from "../components/PurchaseListItem";
-import { FiChevronDown, FiFilter } from "react-icons/fi";
+import { FiChevronDown, FiFilter, FiPlus } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 function Dashboard(): JSX.Element {
@@ -67,7 +67,9 @@ function Dashboard(): JSX.Element {
         />
       </div>
 
-      <Link className="floating-btn" to="/list/1"></Link>
+      <Link className="floating-btn" to="/list/1">
+        <FiPlus color="#fff" size={35} />
+      </Link>
     </div>
   );
 }
