@@ -1,12 +1,26 @@
 import { Col, Row } from "react-bootstrap";
-import { format as formatCurrency } from "../utils/currency";
-import { useMemo } from "react";
+import { formatCurrency } from "../utils/currency";
+import { useEffect, useMemo, useState } from "react";
 import PurchaseListItem from "../components/PurchaseListItem";
 import { FiChevronDown, FiFilter, FiPlus } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import { Stores, getStoreData } from "../services/db.service";
+import { List } from "../interfaces/List";
+import { formatDate } from "../utils/date";
 
 function Dashboard(): JSX.Element {
   const formattedCurrency = useMemo(() => formatCurrency(8654.23), []);
+  const [lists, setLists] = useState<List[] | []>([]);
+
+  // declare this async method
+  const handleGetLists = async () => {
+    const data = await getStoreData<List>(Stores.PurchaseLists);
+    setLists(data);
+  };
+
+  useEffect(() => {
+    handleGetLists();
+  }, []);
 
   return (
     <div>
@@ -52,19 +66,15 @@ function Dashboard(): JSX.Element {
           </span>
         </div>
 
-        <PurchaseListItem
-          title="Groceries"
-          items={3}
-          date="12th Feb 2024"
-          billAmount={542.12}
-        />
-
-        <PurchaseListItem
-          title="Baby Foods"
-          items={7}
-          date="13th Feb 2024"
-          billAmount={1300.5}
-        />
+        {lists &&
+          lists.map((purchase) => (
+            <PurchaseListItem
+              title={purchase.name}
+              items={3}
+              date={formatDate(purchase.created_at)}
+              billAmount={formatCurrency(542.12)}
+            />
+          ))}
       </div>
 
       <Link className="floating-btn" to="/list/1">
