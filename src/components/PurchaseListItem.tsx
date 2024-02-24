@@ -1,10 +1,8 @@
-import { format as formatCurrency } from "../utils/currency";
-
 interface Props {
   title: string;
   items: number;
   date: string;
-  billAmount: number;
+  billAmount: string;
 }
 
 function PurchaseListItem({
@@ -24,7 +22,7 @@ function PurchaseListItem({
           </span>
         </div>
       </div>
-      <span className="bill">{formatCurrency(billAmount)}</span>
+      <span className="bill">{billAmount}</span>
     </div>
   );
 }
