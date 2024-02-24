@@ -1,12 +1,19 @@
-export function format(amount: number, currency: "INR" | "USD" = "INR") {
-  const locale = "en-IN";
+export function formatCurrency(
+  amount: number,
+  currency: "INR" | "USD" = "INR"
+) {
+  try {
+    const locale = "en-IN";
 
-  const options = {
-    style: "currency",
-    currency,
-  };
+    const options = {
+      style: "currency",
+      currency,
+    };
 
-  const formatter = new Intl.NumberFormat(locale, options);
+    const formatter = new Intl.NumberFormat(locale, options);
 
-  return formatter.format(amount);
+    return formatter.format(amount);
+  } catch (error: unknown) {
+    return "0.00";
+  }
 }
