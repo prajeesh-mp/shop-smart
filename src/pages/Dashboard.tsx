@@ -1,20 +1,22 @@
-import { Col, Row } from "react-bootstrap";
-import { formatCurrency } from "../utils/currency";
 import { useEffect, useMemo, useState } from "react";
-import PurchaseListItem from "../components/PurchaseListItem";
-import { FiChevronDown, FiFilter, FiPlus } from "react-icons/fi";
+import { Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+
+import PurchaseListItem from "../components/PurchaseListItem";
+import { formatCurrency } from "../utils/currency";
+import { FiChevronDown, FiFilter, FiPlus } from "react-icons/fi";
 import { Stores, getStoreData } from "../services/db.service";
 import { List } from "../interfaces/List";
 import { formatDate } from "../utils/date";
 
 function Dashboard(): JSX.Element {
-  const formattedCurrency = useMemo(() => formatCurrency(8654.23), []);
+  const formattedCurrency = useMemo(() => formatCurrency(0), []);
   const [lists, setLists] = useState<List[] | []>([]);
 
   // declare this async method
   const handleGetLists = async () => {
-    const data = await getStoreData<List>(Stores.PurchaseLists);
+    const data = (await getStoreData<List>(Stores.PurchaseLists)).reverse();
+
     setLists(data);
   };
 
@@ -25,10 +27,9 @@ function Dashboard(): JSX.Element {
   return (
     <div>
       <div className="summary p-2 py-4">
-        <Row className="mb-5">
+        <Row className="mb-5 d-flex flex-row align-items-center">
           <Col md={6} xs={6} className="d-flex flex-column ps-4">
-            <span className="text-muted-primary">Hi</span>
-            <span>John Doe</span>
+            <span>Hi, John Doe</span>
           </Col>
           <Col
             md={6}
@@ -50,7 +51,7 @@ function Dashboard(): JSX.Element {
             className="d-flex flex-column align-items-end pe-4 "
           >
             <span className="text-muted-primary">Shopping</span>
-            <span className="amount">48</span>
+            <span className="amount">{lists.length}</span>
           </Col>
         </Row>
       </div>
@@ -69,10 +70,12 @@ function Dashboard(): JSX.Element {
         {lists &&
           lists.map((purchase) => (
             <PurchaseListItem
+              key={purchase.id}
+              id={purchase.id}
               title={purchase.name}
               items={3}
               date={formatDate(purchase.created_at)}
-              billAmount={formatCurrency(542.12)}
+              billAmount={formatCurrency(purchase.total_amount || 0)}
             />
           ))}
       </div>
