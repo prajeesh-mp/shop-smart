@@ -4,6 +4,7 @@ import MobileLayout from "../layout/MobileLayout";
 import Welcome from "../pages/Welcome";
 import Dashboard from "../pages/Dashboard";
 import PurchaseList from "../pages/PurchaseList";
+import Purchase from "../pages/Purchase";
 
 const AppRoutes = () => {
   return (
@@ -14,6 +15,7 @@ const AppRoutes = () => {
         <Route path="/" element={<Welcome />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/list/:id" element={<PurchaseList />} />
+        <Route path="/purchase/:id" element={<Purchase />} />
       </Route>
     </Routes>
   );
