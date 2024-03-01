@@ -109,6 +109,10 @@ body {
   border-radius: 10px;
 }
 
+.item-desc {
+  color: #000;
+}
+
 /* Remove border and focus outline from all input elements */
 input {
   border: none;
@@ -135,6 +139,20 @@ input[type="checkbox"] {
   height: 30px;
 }
 
+.check {
+  background: #eaf1f3;
+  border-radius: 5px;
+  width: 30px;
+  height: 30px;
+}
+
+.checked {
+  background: #d5e6d6;
+  border-radius: 5px;
+  width: 30px;
+  height: 30px;
+}
+
 .btn-container {
   display: flex;
   justify-content: center;
@@ -150,4 +168,46 @@ input[type="checkbox"] {
   border: none;
   height: 50px;
   border-radius: 5px;
+}
+
+.hand {
+  cursor: pointer;
+}
+
+.feature-check {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  /* background: #d5e6d6; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-sm {
+  font-size: 12px;
+}
+
+.back-button {
+  background: #a2b8de;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.form-input-total {
+  background: #fff;
+  font-size: 22px;
+  border: 2px solid #252525;
+  border-radius: 5px;
+  width: 70%;
+}
+
+.seperator {
+  color: #d4d4d4;
+  border: 0;
+  border-top: 1px solid;
 }
