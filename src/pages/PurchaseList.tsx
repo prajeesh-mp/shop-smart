@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { FiArrowLeftCircle, FiPlus, FiTrash2 } from "react-icons/fi";
 import { Stores, addData, addMultipleData } from "../services/db.service";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 interface Item {
   id: number;
@@ -9,9 +11,12 @@ interface Item {
 }
 
 function PurchaseList(): JSX.Element {
+  const navigate = useNavigate();
+
   const [inputFields, setInputFields] = useState<Item[]>([
     { id: 1, value: "", fieldRef: null },
   ]);
+
   const [idCounter, setIdCounter] = useState(1);
   const [isSaved, setIsSaved] = useState(false);
 
@@ -42,10 +47,10 @@ function PurchaseList(): JSX.Element {
     try {
       const res = await addData(Stores.PurchaseLists, {
         name: "Groceries",
+        total_amount: 0,
         created_at: Date.now(),
       });
 
-      console.log(res, "ress");
       let dd = inputFields.map((item) => ({
         name: item.value,
         list_id: res,
@@ -57,8 +62,9 @@ function PurchaseList(): JSX.Element {
 
       await addMultipleData(Stores.ListItems, dd, () => {
         console.log("Data added !!!");
-        alert("Saved");
+        // alert("Saved");
         setIsSaved(true);
+        toast.success("Shopping list created !!!");
       });
     } catch (err: unknown) {
       if (err instanceof Error) {
@@ -78,7 +84,7 @@ function PurchaseList(): JSX.Element {
     <div className="purchase">
       <div className="p-3">
         <span className="avatar"></span>
-        <span>
+        <span onClick={() => navigate(-1)}>
           <FiArrowLeftCircle size={25} />
         </span>
 
