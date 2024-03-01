@@ -1,4 +1,6 @@
 import { Col, Row } from "react-bootstrap";
+import { FaCircleCheck } from "react-icons/fa6";
+import { FiCheck } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 function Welcome(): JSX.Element {
@@ -15,17 +17,32 @@ function Welcome(): JSX.Element {
         </div>
 
         <div className="ps-4">
-          <h1>
-            Write down your <br /> shopping list!
+          <h1 className="mb-3">
+            Complete your <br /> Shopping in peace!
           </h1>
 
-          <p>
-            Helps you buy only what you need,
-            <br /> stay within budget, and avoid forgetting items
-          </p>
+          <div className="d-flex flex-row align-items-center mb-2">
+            <FaCircleCheck color="#42a32c" className="me-2" />
+            <span>Write down your Shopping List</span>
+          </div>
+
+          <div className="d-flex flex-row align-items-center mb-2">
+            <FaCircleCheck color="#42a32c" className="me-2" />
+            <span>Buy only what you need</span>
+          </div>
+
+          <div className="d-flex flex-row align-items-center mb-2">
+            <FaCircleCheck color="#42a32c" className="me-2" />
+            <span>Stay within budget</span>
+          </div>
+
+          <div className="d-flex flex-row align-items-center mb-3">
+            <FaCircleCheck color="#42a32c" className="me-2" />
+            <span>Avoid forgetting items</span>
+          </div>
         </div>
 
-        <div className="d-flex flex-column justify-content-center align-items-center mt-4">
+        <div className="d-flex flex-column justify-content-center align-items-center mt-4 ">
           <img
             src="/assets/shop-smart-checklist.jpg"
             className="img-responsive"
@@ -33,8 +50,11 @@ function Welcome(): JSX.Element {
             alt="Shop Smart - Create and Manage your purchase list"
           />
           <Link to="/dashboard" className="btn btn-primary w-75 mt-5">
-            Get Started
+            Get Started for Free !
           </Link>
+          <span className="text-muted text-sm mt-2">
+            No Credit Card required
+          </span>
         </div>
       </Col>
     </Row>
