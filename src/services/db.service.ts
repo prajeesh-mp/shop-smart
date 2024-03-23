@@ -17,7 +17,7 @@ export const initDB = (): Promise<boolean> => {
 
       // if the data object store doesn't exist, create it
       if (!db.objectStoreNames.contains(Stores.PurchaseLists)) {
-        console.log("Creating purchase lists store");
+        // console.log("Creating purchase lists store");
         let store = db.createObjectStore(Stores.PurchaseLists, {
           keyPath: "id",
           autoIncrement: true,
@@ -27,7 +27,7 @@ export const initDB = (): Promise<boolean> => {
       }
 
       if (!db.objectStoreNames.contains(Stores.ListItems)) {
-        console.log("Creating list items store");
+        // console.log("Creating list items store");
         let store = db.createObjectStore(Stores.ListItems, {
           keyPath: "id",
           autoIncrement: true,
@@ -41,7 +41,7 @@ export const initDB = (): Promise<boolean> => {
     request.onsuccess = () => {
       db = request.result;
       version = db.version;
-      console.log("request.onsuccess - initDB", version);
+      // console.log("request.onsuccess - initDB", version);
       resolve(true);
     };
 
@@ -127,7 +127,7 @@ export const getStoreData = <T>(storeName: Stores): Promise<T[]> => {
     var request = indexedDB.open(dbName);
 
     request.onsuccess = () => {
-      console.log("request.onsuccess - getAllData");
+      // console.log("request.onsuccess - getAllData");
       db = request.result;
       const tx = db.transaction(storeName, "readonly");
       const store = tx.objectStore(storeName);
@@ -146,7 +146,7 @@ export const queryStoreData = <T>(
   return new Promise((resolve, reject) => {
     var request = indexedDB.open(dbName);
     request.onsuccess = () => {
-      console.log("request.onsuccess - getQueriedData");
+      // console.log("request.onsuccess - getQueriedData");
       db = request.result;
       const transaction = db.transaction(storeName, "readonly");
       const store = transaction.objectStore(storeName);
@@ -180,7 +180,7 @@ export const updateStoreData = (
   return new Promise((resolve, reject) => {
     var request = indexedDB.open(dbName);
     request.onsuccess = () => {
-      console.log("request.onsuccess - updateData");
+      // console.log("request.onsuccess - updateData");
       db = request.result;
       const transaction = db.transaction(storeName, "readwrite");
       const store = transaction.objectStore(storeName);
@@ -224,7 +224,7 @@ export const deleteData = (
     var request = indexedDB.open(dbName, version);
 
     request.onsuccess = () => {
-      console.log("request.onsuccess - deleteData", key);
+      // console.log("request.onsuccess - deleteData", key);
       db = request.result;
       const tx = db.transaction(storeName, "readwrite");
       const store = tx.objectStore(storeName);

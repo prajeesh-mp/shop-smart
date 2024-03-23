@@ -8,8 +8,7 @@ import { useEffect } from "react";
 
 function App() {
   const handleInitDB = async () => {
-    const status = await initDB();
-    console.log("status DB", status);
+    await initDB();
   };
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { FiArrowLeft, FiArrowLeftCircle, FiCheck } from "react-icons/fi";
+import { FiArrowLeft, FiCheck } from "react-icons/fi";
 import { FaCircleCheck } from "react-icons/fa6";
 import {
   Stores,
@@ -8,8 +8,6 @@ import {
 } from "../services/db.service";
 import { useEffect, useState } from "react";
 import { Item } from "../interfaces/Item";
-import { Row } from "react-bootstrap";
-import { formatCurrency } from "../utils/currency";
 
 function Purchase(): JSX.Element | null {
   const navigate = useNavigate();
@@ -30,11 +28,10 @@ function Purchase(): JSX.Element | null {
     try {
       const update = await updateStoreData(Stores.ListItems, id, status);
       if (update) {
-        console.log(update, "status");
         fetchData();
       }
     } catch (error: any) {
-      console.log("Error occured", error);
+      // console.log("Error occured", error);
     }
   };
 
@@ -57,7 +54,7 @@ function Purchase(): JSX.Element | null {
           </div>
 
           <h2 className="mt-4">
-            Complete <br /> your Shopping in peace !
+            Complete <br /> your Shopping in peace
           </h2>
         </div>
         <div className="items p-4 bg-white">
@@ -89,7 +86,7 @@ function Purchase(): JSX.Element | null {
             </div>
           ))}
 
-          <div className="d-flex flex-row justify-content-between align-items-center seperator mt-4">
+          {/* <div className="d-flex flex-row justify-content-between align-items-center seperator mt-4">
             <div className="item d-flex flex-row justify-content-between align-items-center mt-4">
               <input
                 name="total"
@@ -110,7 +107,7 @@ function Purchase(): JSX.Element | null {
             </div>
 
             <button className="btn btn-md btn-primary mt-4">Finish</button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

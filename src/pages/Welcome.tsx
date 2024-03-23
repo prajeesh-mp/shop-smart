@@ -1,6 +1,5 @@
 import { Col, Row } from "react-bootstrap";
 import { FaCircleCheck } from "react-icons/fa6";
-import { FiCheck } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 function Welcome(): JSX.Element {
@@ -52,7 +51,7 @@ function Welcome(): JSX.Element {
           <Link to="/dashboard" className="btn btn-primary w-75 mt-5">
             Get Started for Free !
           </Link>
-          <span className="text-muted text-sm mt-2">
+          <span className="text-muted text-sm mt-2 mb-4">
             No Credit Card required
           </span>
         </div>

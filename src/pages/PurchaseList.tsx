@@ -58,19 +58,19 @@ function PurchaseList(): JSX.Element {
         created_at: Date.now(),
       }));
 
-      console.log(dd);
+      // console.log(dd);
 
       await addMultipleData(Stores.ListItems, dd, () => {
-        console.log("Data added !!!");
+        // console.log("Data added !!!");
         // alert("Saved");
         setIsSaved(true);
         toast.success("Shopping list created !!!");
       });
     } catch (err: unknown) {
       if (err instanceof Error) {
-        console.log(err.message);
+        // console.log(err.message);
       } else {
-        console.log("Something went wrong");
+        // console.log("Something went wrong");
       }
     }
   };
@@ -91,10 +91,6 @@ function PurchaseList(): JSX.Element {
         <h2 className="mt-4">
           Create a <br /> shopping list now !
         </h2>
-        <p>
-          Helps you buy only what you need, <br />
-          stay within budget, and avoid forgetting items
-        </p>
       </div>
       <form onSubmit={handleSubmit}>
         <div className="items mt-3">
