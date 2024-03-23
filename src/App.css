@@ -211,3 +211,7 @@ input[type="checkbox"] {
   border: 0;
   border-top: 1px solid;
 }
+
+.feedback {
+  font-size: 12px;
+}

@@ -68,7 +68,12 @@ function Dashboard(): JSX.Element {
         </div>
 
         <span className="d-flex flex-row justify-content-end">
-          <a href="https://forms.gle/fXHtiK66uQXnK9xz9">Feedback</a>
+          <a
+            className="text-decoration-none feedback"
+            href="https://forms.gle/fXHtiK66uQXnK9xz9"
+          >
+            Feedback
+          </a>
         </span>
 
         {lists &&
